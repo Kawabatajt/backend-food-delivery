@@ -10,9 +10,8 @@ FoodCategoryRouter.get("/", async (req: Request, res: Response) => {
 FoodCategoryRouter.post("/", async (req: Request, res: Response) => {
   const { categoryName } = req.body;
   try {
-    const foodCategory = new FoodCategoryModel({ categoryName });
-    await foodCategory.save();
-    res.send(foodCategory);
+    const foodCategory = await FoodCategoryModel.create({ categoryName });
+    res.json(foodCategory);
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
@@ -26,13 +25,13 @@ FoodCategoryRouter.put("/:id", async (req: Request, res: Response) => {
     { categoryName },
     { new: true }
   );
-  res.send(updatedCategory);
+  res.json(updatedCategory);
 });
 FoodCategoryRouter.delete(
   "/food-category/:id",
   async (req: Request, res: Response) => {
     const { id } = req.params;
-    const updatedCategory = await FoodCategoryModel.findByIdAndDelete(id);
-    res.send(updatedCategory);
+    await FoodCategoryModel.findByIdAndDelete(id);
+    res.send(id);
   }
 );

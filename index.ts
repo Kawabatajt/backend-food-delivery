@@ -19,7 +19,7 @@ const connectMongoDB = async () => {
 };
 connectMongoDB();
 
-app.use("/food-category", FoodCategoryRouter);
+app.use("/food-category", cors(), FoodCategoryRouter);
 app.use("/food", FoodsRouter);
 
 app.listen(PORT, () => {
