@@ -5,6 +5,6 @@ export const FOOD_SCHEMA = new mongoose.Schema({
   price: Number,
   image: String,
   ingredients: String,
-  category: ObjectId,
+  category: mongoose.Schema.Types.ObjectId,
 });
 export const FoodModel = mongoose.model("Food", FOOD_SCHEMA, "food");
