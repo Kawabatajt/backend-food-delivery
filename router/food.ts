@@ -2,11 +2,10 @@ import express, { Request, Response, Router } from "express";
 import { FoodModel } from "../models/foods";
 
 export const FoodsRouter = express.Router();
-FoodsRouter.get("/:id", async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const Foods = await FoodModel.find({
-    category: id,
-  });
+FoodsRouter.get("/", async (req: Request, res: Response) => {
+  const { id } = req.query;
+  const filter = id ? { category: id } : {};
+  const Foods = await FoodModel.find(filter);
   res.json(Foods);
 });
 FoodsRouter.post("/", async (req: Request, res: Response) => {

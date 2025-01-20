@@ -7,4 +7,5 @@ export const FOOD_SCHEMA = new mongoose.Schema({
   ingredients: String,
   category: mongoose.Schema.Types.ObjectId,
 });
-export const FoodModel = mongoose.model("Food", FOOD_SCHEMA, "food");
+export const FoodModel =
+  mongoose.models["Food"] || mongoose.model("Food", FOOD_SCHEMA, "food");
