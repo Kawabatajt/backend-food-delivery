@@ -24,3 +24,15 @@ FoodsRouter.post("/", async (req: Request, res: Response) => {
     res.status(500).send(error);
   }
 });
+FoodsRouter.put("/", async (req: Request, res: Response) => {
+  const { id } = req.query;
+  const body = req.body;
+
+  const updatedFood = await FoodModel.findByIdAndUpdate(id, body);
+  res.json(updatedFood);
+});
+FoodsRouter.delete("/", async (req: Request, res: Response) => {
+  const { id } = req.query;
+  const updatedFood = await FoodModel.findByIdAndDelete(id);
+  res.json(updatedFood);
+});
