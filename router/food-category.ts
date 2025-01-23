@@ -1,11 +1,15 @@
 import express, { Request, Response, Router } from "express";
 import { FoodCategoryModel } from "../models/food-category";
-
+import { verifyToken } from "@clerk/backend";
 export const FoodCategoryRouter = express.Router();
 
 FoodCategoryRouter.get("/", async (req: Request, res: Response) => {
-  const FoodCategories = await FoodCategoryModel.find();
-  res.json(FoodCategories);
+  try {
+    const FoodCategories = await FoodCategoryModel.find();
+    res.json(FoodCategories);
+  } catch {
+    res.json({ status: "can not access" });
+  }
 });
 FoodCategoryRouter.post("/", async (req: Request, res: Response) => {
   const { categoryName } = req.body;
