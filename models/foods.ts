@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-import { MongoClient, ObjectId, Timestamp } from "mongodb";
+
 export const FOOD_SCHEMA = new mongoose.Schema({
   foodName: String,
   price: Number,

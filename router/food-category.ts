@@ -1,6 +1,6 @@
 import express, { Request, Response, Router } from "express";
 import { FoodCategoryModel } from "../models/food-category";
-import { verifyToken } from "@clerk/backend";
+
 export const FoodCategoryRouter = express.Router();
 
 FoodCategoryRouter.get("/", async (req: Request, res: Response) => {
