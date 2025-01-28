@@ -18,6 +18,15 @@ const auth = async (req: any, res: any, next: any) => {
     res.json({ status: "not accessible" });
   }
 };
+// FoodOrderRouter.get("/", auth, async (req: CustomRequest, res: Response) => {
+//   const user = req?.userId;
+//   console.log({ user });
+//   const { FoodOrderItems, totalPrice } = req.body;
+//   const order = { user, FoodOrderItems, totalPrice };
+//   const newOrder = await FoodOrderModel.create(order);
+//   res.json(newOrder);
+// });
+
 FoodOrderRouter.post("/", auth, async (req: CustomRequest, res: Response) => {
   const user = req?.userId;
   console.log({ user });
