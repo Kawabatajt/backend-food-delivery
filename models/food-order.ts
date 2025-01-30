@@ -4,15 +4,16 @@ import { ObjectId, Timestamp } from "mongodb";
 const mongoose = require("mongoose");
 
 export const FoodOrderItems = new mongoose.Schema({
-  food: ObjectId,
+  food: mongoose.Schema.Types.ObjectId,
   quantity: Number,
 });
 
 export const FOOD_ORDER_SCHEMA = new mongoose.Schema(
   {
-    user: ObjectId,
+    user: String,
+    address: String,
     totalPrice: Number,
-    FoodOrderItems: [FoodOrderItems],
+    foodOrderItems: [FoodOrderItems],
     isVerified: Boolean,
     status: {
       type: String,
@@ -20,7 +21,7 @@ export const FOOD_ORDER_SCHEMA = new mongoose.Schema(
       default: "PENDING",
     },
   },
-  { Timestamp: true }
+  { timestamps: true }
 );
 
 export const FoodOrderModel =

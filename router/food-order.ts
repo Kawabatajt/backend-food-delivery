@@ -12,8 +12,9 @@ const auth = async (req: any, res: any, next: any) => {
     const verified = await verifyToken(token, {
       secretKey: process.env.CLERK_SECRET_KEY,
     });
-    next();
+
     req.userId = verified.sub;
+    next();
   } catch {
     res.json({ status: "not accessible" });
   }
@@ -29,9 +30,8 @@ const auth = async (req: any, res: any, next: any) => {
 
 FoodOrderRouter.post("/", auth, async (req: CustomRequest, res: Response) => {
   const user = req?.userId;
-  console.log({ user });
-  const { FoodOrderItems, totalPrice } = req.body;
-  const order = { user, FoodOrderItems, totalPrice };
+  const { foodOrderItems, totalPrice, address } = req.body;
+  const order = { user, foodOrderItems, totalPrice, address };
   const newOrder = await FoodOrderModel.create(order);
   res.json(newOrder);
 });
