@@ -1,10 +1,10 @@
 import { triggerAsyncId } from "async_hooks";
 import { ObjectId, Timestamp } from "mongodb";
-
+import { FOOD_SCHEMA } from "./foods";
 const mongoose = require("mongoose");
 
 export const FoodOrderItems = new mongoose.Schema({
-  food: mongoose.Schema.Types.ObjectId,
+  food: FOOD_SCHEMA,
   quantity: Number,
 });
 

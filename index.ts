@@ -4,6 +4,7 @@ import { MongoClient, ObjectId, Timestamp } from "mongodb";
 import { FoodCategoryRouter } from "./router/food-category";
 import { FoodsRouter } from "./router/food";
 import { FoodOrderRouter } from "./router/food-order";
+import { userRouter } from "./router/user";
 const PORT = 5000;
 const app = express();
 const mongoose = require("mongoose");
@@ -22,6 +23,7 @@ connectMongoDB();
 app.use("/food-category", cors(), FoodCategoryRouter);
 app.use("/food", FoodsRouter);
 app.use("/food-order", FoodOrderRouter);
+app.use("/account", userRouter);
 app.listen(PORT, () => {
   console.log(`Server is Running on http://localhost:${PORT}`);
 });
