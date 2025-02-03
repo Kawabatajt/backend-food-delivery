@@ -11,6 +11,7 @@ export const FoodOrderItems = new mongoose.Schema({
 export const FOOD_ORDER_SCHEMA = new mongoose.Schema(
   {
     user: String,
+    email: String,
     address: String,
     totalPrice: Number,
     foodOrderItems: [FoodOrderItems],

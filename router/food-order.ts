@@ -4,6 +4,7 @@ import { verifyToken } from "@clerk/backend";
 export const FoodOrderRouter = express.Router();
 export type CustomRequest = Request & {
   userId?: string;
+  email?: string;
 };
 
 const auth = async (req: any, res: any, next: any) => {
@@ -34,8 +35,8 @@ FoodOrderRouter.get("/", auth, async (req: CustomRequest, res: Response) => {
 
 FoodOrderRouter.post("/", auth, async (req: CustomRequest, res: Response) => {
   const user = req?.userId;
-  const { foodOrderItems, totalPrice, address } = req.body;
-  const order = { user, foodOrderItems, totalPrice, address };
+  const { foodOrderItems, totalPrice, address, email } = req.body;
+  const order = { user, foodOrderItems, totalPrice, address, email };
   const newOrder = await FoodOrderModel.create(order);
   res.json(newOrder);
 });
